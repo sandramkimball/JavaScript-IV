@@ -2,24 +2,23 @@
 
 Prototype Refactor
 
-1. Copy and paste your code or the solution from yesterday
-
-2. Your goal is to refactor all of this code to use ES6 Classes. The console.log() statements should still return what is expected of them.
+Refactor all of this code to use ES6 Classes. The console.log() statements should still return what is expected of them.
 
 */
+
 /*
               === GameObject ===
   * createdAt
   * name
-  * dimensions (These represent the character's size in the video game)
-  * destroy() // prototype method that returns: `${this.name} was removed from the game.`
+  * dimensions 
+  * destroy()`
 */
 
 /*
             === CharacterStats ===
   * healthPoints
-  * takeDamage() // prototype method -> returns the string '<object name> took damage.'
-  * should inherit destroy() from GameObject's prototype
+  * takeDamage() 
+  * should inherit destroy() 
 */
 
 /*
@@ -27,68 +26,59 @@ Prototype Refactor
   * team
   * weapons
   * language
-  * greet() // prototype method -> returns the string '<object name> offers a greeting in <object language>.'
-  * should inherit destroy() from GameObject through CharacterStats
-  * should inherit takeDamage() from CharacterStats
+  * greet() 
+  * should inherit destroy() 
+  * should inherit takeDamage() 
 */
  
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
-  * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
-  * Instances of CharacterStats should have all of the same properties as GameObject.
 */
 
-function Humanoid(attr){
-    this.newCreatedAt = attr.createdAt,
-    this.dimensions = attr.dimensions,
-    this.healthPoints = attr.healthPoints,
-    this.name = attr.name,
-    this.team = attr.team,
-    this.weapons = attr.weapons,
-    this.language = attr.language
+class Humanoid{
+    constructor(attr){
+        this.newCreatedAt = attr.createdAt,
+        this.dimensions = attr.dimensions,
+        this.healthPoints = attr.healthPoints,
+        this.name = attr.name,
+        this.team = attr.team,
+        this.weapons = attr.weapons,
+        this.language = attr.language
   }
-  
-  function Villain(attr){
-    this.dimensions = attr.dimensions,
-    this.healthPoints = attr.healthPoints,
-    this.name = attr.name,
-    this.team = attr.team,
-    this.attack = attr.attack
-  }
-  
-  /*function Hero(attr){
-    this.dimensions = attr.dimensions,
-    this.healthPoints = attr.healthPoints,
-    this.name = attr.name,
-    this.team = attr.team,
-    this.attack = attr.attack,
-    this.language = attr.language
-  }*/
-  
-  Date.prototype.createdAt = function() {
-    return Date;
-  }
-  
-  Humanoid.prototype.destroy = function(){
+  destroy(){
     return `${this.name} was removed from the game.`;
-  }
+  };
   
-  Humanoid.prototype.takeDamage = function(){
+  takeDamage(){
     return `${this.name} took damage.`;
   }
   
-  Humanoid.prototype.greet = function(){
+  greet(){
     return `${this.name} offers a greeting in ${this.language}.`;
+  };
+
+  createdAt() {
+    return Date;
   }
+}
   
-  Villain.prototype.attack = function(Humanoid){
-    if(Humanoid.healthPoints <= this.attackPoints){
-      return `${this.name} has destroyed ${Humanoid.name}!`;
-    } else {
-      return `${Humanoid.name} still lives!`;
+  class Villain extends Humanoid{
+      constructor(attr){
+        super(attr);
+        this.attack = attr.attack
     }
+    attack(victim){
+        if(victim.healthPoints - this.attackPoints <= 0){
+          return `${this.name} has eaten ${victim.name}!`;
+        } else {
+          return `${victim.name} survived the attack!`;
+        }
+      };
   }
   
+  
+  
+        //CHARACTERS
   
     const mage = new Humanoid({
       createdAt: new Date(),
@@ -142,15 +132,20 @@ function Humanoid(attr){
   
   
     const theMeg = new Villain({
+      createdAt: new Date(),
+      dimensions: {
+        length: 25,
+        width: 10,
+        height: 10,
+      },
       healthPoints: 20,
       name: 'The Meg',
-      team: 'Villains',
+      team: 'Sharks',
+      weapons: [
+        'Jaws',
+      ],
+      language: 'none',
       attackPoints: 12,
-      dimensions: {
-        length: 5,
-        width: 6,
-        height: 10
-      },
     });
   
     console.log(mage.createdAt); // Today's date
