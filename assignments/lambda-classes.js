@@ -94,7 +94,7 @@ const fred = new Instructor({
      location: 'Oceanside',
      specialty: 'Communications',
      faveLanguage:'SQL',
-     catchPhrase: 'Okie Dokies',
+     catchPhrase: 'I am b-e-a-utiful!',
  })
 
  const mabel = new Instructor({
@@ -116,11 +116,11 @@ const dipper = new Student({
     grade: 22,
 })
 
-const simba = new Student({
-    name: 'Simba',
-    age: 5,
+const mufasa = new Student({
+    name: 'Mufasa',
+    age: 13,
     location: 'Sahara',
-    previousBackground: 'Prince',
+    previousBackground: 'King of the Shadows',
     className: 'Web411',
     faveSubjects: 'Web Development',
     grade: 85,
@@ -149,11 +149,11 @@ console.log(mabel.graded(dipper, 'REACT'));
 
 
 console.log(dipper.listsSubjects());
-console.log(simba.PRAssignment('Python'));
+console.log(mufasa.PRAssignment('Python'));
 console.log(dipper.sprintChallenge('SQL'));
 
 console.log(rapunzel.standup('HackerDome'));
-console.log(peter.debugsCode(simba, 'Java'));
+console.log(peter.debugsCode(mufasa, 'Java'));
 
 
 console.log(mabel.editGrade(dipper));

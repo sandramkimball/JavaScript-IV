@@ -58,24 +58,39 @@ class Humanoid{
   };
 
   createdAt() {
-    return Date;
+    return Date();
   }
 }
   
 class Villain extends Humanoid{
     constructor(attr){
         super(attr);
-        this.attack = attr.attack
+        this.attackPoints = attr.attackPoints;
   }
-  attack(victim){
-    if(victim.healthPoints - this.attackPoints <= 0){
-        return `${this.name} has eaten ${victim.name}!`;
+  fight(hero){
+    var damage = hero.healthPoints - this.attackPoints;
+    if(damage < 0){
+        return `${this.name} has eaten ${hero.name}!`;
         } else {
-          return `${victim.name} survived the attack!`;
+          return `${hero.name} survived the attack!`;
         }
     }
 }
   
+class Hero extends Humanoid{
+    constructor(attr){
+        super(attr);
+        this.attackPoints = attr.attackPoints;
+  }
+  fight(villain){
+      var damage = villain.healthPoints - this.attackPoints;
+      if(damage <= 0){
+          return `${this.name} has defeated the evil ${villain.name}!`;
+        } else {
+          return `${villain.name} survived the attack!`;
+        }
+    }
+}
   
   
         //CHARACTERS
@@ -130,7 +145,10 @@ class Villain extends Humanoid{
       language: 'Elvish',
     });
   
-  
+  function attackP(){
+      return Math.floor(Math.random() * 31);
+  }
+
     const megaladon = new Villain({
       createdAt: new Date(),
       dimensions: {
@@ -138,16 +156,35 @@ class Villain extends Humanoid{
         width: 10,
         height: 10,
       },
-      healthPoints: 20,
+      healthPoints: 30,
       name: 'The Meg',
       team: 'Sharks',
       weapons: [
         'Jaws',
       ],
       language: 'none',
-      attackPoints: 12,
+      attackPoints: attackP(),
     });
   
+    const batman = new Hero({
+        createdAt: new Date(),
+        dimensions: {
+          length: 3,
+          width: 2,
+          height: 7,
+        },
+        healthPoints: 15,
+        name: 'Batman',
+        team: 'Justice League',
+        weapons: [
+          'Batarang',
+        ],
+        language: 'none',
+        attackPoints: attackP(),
+      });
+
+
+
     console.log(mage.createdAt); // Today's date
     console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
     console.log(swordsman.healthPoints); // 15
@@ -158,10 +195,9 @@ class Villain extends Humanoid{
     console.log(archer.greet()); // Lilith offers a greeting in Elvish.
     console.log(mage.takeDamage()); // Bruce took damage.
     console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-    console.log(megaladon.attack(mage));
+    console.log(megaladon.attackPoints);
+    console.log(megaladon.fight(batman));
   
   
-    // Stretch task: 
-    // * Create Villain and Hero that inherit from the Humanoid.  
-    // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
-    // * Create two new objects, one a villain!
+   
+    
