@@ -17,12 +17,12 @@ const fred = new Instructor({
 
  class Person{
     constructor(attr){
-        this.newName = attr.name;
+        this.name = attr.name;
         this.newAge = attr.age;
         this.newLocation = attr.location;
     }
     speak(){
-        return `Hello. My name is ${this.newName}, I am from ${this.newLocation}.`
+        return `Goodmorning. My name is ${this.name} and I am a ${this.newLocation}.`
     }
  }
 
@@ -34,10 +34,10 @@ const fred = new Instructor({
          this.newCatchPhrase = attr.catchPhrase;
      }
      demo(subject){
-         console.log('Today we are learning about' + 'subject' + '.')
+         return `Today we are learning about ${subject}.`;
      }
      grade(student, subject){
-         return `${student.name} receives a perfect score on ${'subject'}.`
+         return `${student.name} receives a perfect score on ${subject}.`;
      }
  };
 
@@ -50,13 +50,13 @@ const fred = new Instructor({
          this.faveSubjects = attr.faveSubjects;
      }
      listsSubjects(){
-         console.log(this.faveSubjects);
+         return `${this.faveSubjects}`
      }
      PRAssignment(subject){
-         console.log(`${this.newName} has submitted a PR for ${subject}.`)
+         return `${this.name} has submitted a PR for ${subject}.`
      }
      sprintChallenge(subject){
-         console.log(`${this.newName} has begun sprint challenge on ${'subject'}.`)
+         return `${this.name} has begun sprint challenge on ${subject}.`
      }
  };
 
@@ -67,10 +67,10 @@ const fred = new Instructor({
          this.faveInstructor = attr.faveInstructor;
      }
      standup(channel){
-         return `${this.newName} announces to ${channel}, @channel standy times! `;
+         return `${this.name} announces to ${channel}, @channel standy times!`;
      }
      debugsCode(student, subject){
-         return `${this.newName} debugs ${student.name}'s code on ${'subject'}`;
+         return `${this.name} debugs ${student.name}'s code on ${subject}.`;
      }
  }
 
@@ -78,9 +78,9 @@ const fred = new Instructor({
  //Person, Instructor, Student, Teamlead
 
  const russ = new Person({
-    name: 'Russ',
-    age: 72,
-    location: 'Rancho Cucomunga',
+    name: 'Russell',
+    age: 12,
+    location: 'Wilderness Explorer from Tribe 54',
 })
  
  const corben = new Instructor({
@@ -138,11 +138,11 @@ const peter = new TeamLead({
 
 console.log(russ.speak());
 console.log(corben.demo('html'));
-console.log(mabel.speak(dipper, 'html'));
+console.log(mabel.grade(dipper, 'REACT'));
 
 console.log(dipper.listsSubjects());
-console.log(simba.PRAssignment('html'));
-console.log(dipper.sprintChallenge('html'));
+console.log(simba.PRAssignment('Python'));
+console.log(dipper.sprintChallenge('SQL'));
 
-console.log(rapunzel.standup('Announcements'));
-console.log(peter.debugsCode(simba, 'subject'));
+console.log(rapunzel.standup('HackerDome'));
+console.log(peter.debugsCode(simba, 'Java'));
