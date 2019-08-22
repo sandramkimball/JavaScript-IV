@@ -26,7 +26,7 @@ const fred = new Instructor({
     }
  }
 
- class Instructors extends Person{
+ class Instructor extends Person{
      constructor(attr){
          super(attr);
          this.newSpecialty = attr.specialty;
@@ -42,7 +42,7 @@ const fred = new Instructor({
  };
 
  
- class Students extends Person{
+ class Student extends Person{
      constructor(attr){
          super(attr);
          this.newBackground = attr.previousBackground;
@@ -73,3 +73,67 @@ const fred = new Instructor({
          return `${this.newName} debugs ${student.name}'s code on ${subject}`;
      }
  }
+
+
+ //Person, Instructor, Student, Teamlead
+
+ const russ = new Person({
+    name: 'Russ',
+    age: 72,
+    location: 'Rancho Cucomunga',
+})
+ 
+ const corben = new Instructor({
+     name: 'Corben',
+     age: 24,
+     location: 'Oceanside',
+     specialty: 'Communications',
+     faveLanguage:'SQL',
+     catchPhrase: 'Okie Dokies',
+ })
+
+ const mabel = new Instructor({
+    name: 'Mabel',
+    age: 23,
+    location: 'Gravity Falls',
+    specialty: 'Web Design',
+    faveLanguage:'CSS',
+    catchPhrase: 'Llamas are nature\'s greatest warriors.',
+})
+
+const dipper = new Student({
+    name: 'Dipper',
+    age: 22,
+    location: 'Gravity Falls',
+    previousBackground: 'Camp Counselor',
+    className:'Web303',
+    faveSubjects: 'C#',
+})
+
+const simba = new Student({
+    name: 'Simba',
+    age: 5,
+    location: 'Sahara',
+    previousBackground: 'Prince',
+    className: 'Web411',
+    faveSubjects: 'Web Development',
+})
+
+const rapunzel = new TeamLead({
+    name: 'Rapunzel',
+    age: 25,
+    location: 'Hidden Meadows',
+    gradClassName: 'Web2',
+    faveInstructor: 'Corben'
+})
+
+const peter = new TeamLead({
+    name: 'Peter Parker',
+    age: 19,
+    location: 'New York',
+    gradClassName: 'Web3',
+    faveInstructor: 'Mabel'
+})
+
+
+
