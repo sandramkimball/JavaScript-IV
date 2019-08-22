@@ -34,10 +34,10 @@ const fred = new Instructor({
          this.newCatchPhrase = attr.catchPhrase;
      }
      demo(subject){
-         return `Today we are learning about ${subject}.`
+         console.log('Today we are learning about' + 'subject' + '.')
      }
      grade(student, subject){
-         return `${student.name} receives a perfect score on ${subject}.`
+         return `${student.name} receives a perfect score on ${'subject'}.`
      }
  };
 
@@ -45,32 +45,32 @@ const fred = new Instructor({
  class Student extends Person{
      constructor(attr){
          super(attr);
-         this.newBackground = attr.previousBackground;
+         this.previousBackground = attr.previousBackground;
          this.newClassName = attr.className;
-         this.newFaveSubjects = attr.faveSubjects;
+         this.faveSubjects = attr.faveSubjects;
      }
      listsSubjects(){
-         console.log(this.newFaveSubjects);
+         console.log(this.faveSubjects);
      }
      PRAssignment(subject){
          console.log(`${this.newName} has submitted a PR for ${subject}.`)
      }
      sprintChallenge(subject){
-         console.log(`${this.newName} has begun sprint challenge on ${subject}.`)
+         console.log(`${this.newName} has begun sprint challenge on ${'subject'}.`)
      }
  };
 
- class TeamLead extends Instructors{
+ class TeamLead extends Instructor{
      constructor(attr){
          super(attr);
-         this.newGradClass = attr.gradClassName;
-         this.newFaveInstructor = attr.faveInstructor;
+         this.gradClassName = attr.gradClassName;
+         this.faveInstructor = attr.faveInstructor;
      }
      standup(channel){
          return `${this.newName} announces to ${channel}, @channel standy times! `;
      }
      debugsCode(student, subject){
-         return `${this.newName} debugs ${student.name}'s code on ${subject}`;
+         return `${this.newName} debugs ${student.name}'s code on ${'subject'}`;
      }
  }
 
@@ -136,4 +136,13 @@ const peter = new TeamLead({
 })
 
 
+console.log(russ.speak());
+console.log(corben.demo('html'));
+console.log(mabel.speak(dipper, 'html'));
 
+console.log(dipper.listsSubjects());
+console.log(simba.PRAssignment('html'));
+console.log(dipper.sprintChallenge('html'));
+
+console.log(rapunzel.standup('Announcements'));
+console.log(peter.debugsCode(simba, 'subject'));
