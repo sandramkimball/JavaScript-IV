@@ -36,8 +36,12 @@ const fred = new Instructor({
      demo(subject){
          return `Today we are learning about ${subject}.`;
      }
-     grade(student, subject){
+     graded(student, subject){
          return `${student.name} receives a perfect score on ${subject}.`;
+     }
+     editGrade(student){
+         var newGrade = Math.floor(Math.random() * 101) +- student.grade;
+         return `${student.name} now has a grade of ${newGrade}.`
      }
  };
 
@@ -48,6 +52,7 @@ const fred = new Instructor({
          this.previousBackground = attr.previousBackground;
          this.newClassName = attr.className;
          this.faveSubjects = attr.faveSubjects;
+         this.grade = attr.grade;
      }
      listsSubjects(){
          return `${this.faveSubjects}`
@@ -108,6 +113,7 @@ const dipper = new Student({
     previousBackground: 'Camp Counselor',
     className:'Web303',
     faveSubjects: 'C#',
+    grade: 22,
 })
 
 const simba = new Student({
@@ -117,6 +123,7 @@ const simba = new Student({
     previousBackground: 'Prince',
     className: 'Web411',
     faveSubjects: 'Web Development',
+    grade: 85,
 })
 
 const rapunzel = new TeamLead({
@@ -138,7 +145,8 @@ const peter = new TeamLead({
 
 console.log(russ.speak());
 console.log(corben.demo('html'));
-console.log(mabel.grade(dipper, 'REACT'));
+console.log(mabel.graded(dipper, 'REACT'));
+
 
 console.log(dipper.listsSubjects());
 console.log(simba.PRAssignment('Python'));
@@ -146,3 +154,6 @@ console.log(dipper.sprintChallenge('SQL'));
 
 console.log(rapunzel.standup('HackerDome'));
 console.log(peter.debugsCode(simba, 'Java'));
+
+
+console.log(mabel.editGrade(dipper));
