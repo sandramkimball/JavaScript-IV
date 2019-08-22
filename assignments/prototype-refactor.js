@@ -37,7 +37,7 @@ Refactor all of this code to use ES6 Classes. The console.log() statements shoul
 
 class Humanoid{
     constructor(attr){
-        this.newCreatedAt = attr.createdAt,
+        this.CreatedAt = attr.createdAt,
         this.dimensions = attr.dimensions,
         this.healthPoints = attr.healthPoints,
         this.name = attr.name,
@@ -62,19 +62,19 @@ class Humanoid{
   }
 }
   
-  class Villain extends Humanoid{
-      constructor(attr){
+class Villain extends Humanoid{
+    constructor(attr){
         super(attr);
         this.attack = attr.attack
-    }
-    attack(victim){
-        if(victim.healthPoints - this.attackPoints <= 0){
-          return `${this.name} has eaten ${victim.name}!`;
+  }
+  attack(victim){
+    if(victim.healthPoints - this.attackPoints <= 0){
+        return `${this.name} has eaten ${victim.name}!`;
         } else {
           return `${victim.name} survived the attack!`;
         }
-      };
-  }
+    }
+}
   
   
   
@@ -131,7 +131,7 @@ class Humanoid{
     });
   
   
-    const theMeg = new Villain({
+    const megaladon = new Villain({
       createdAt: new Date(),
       dimensions: {
         length: 25,
@@ -158,10 +158,10 @@ class Humanoid{
     console.log(archer.greet()); // Lilith offers a greeting in Elvish.
     console.log(mage.takeDamage()); // Bruce took damage.
     console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-    console.log(theMeg.attack(mage));
+    console.log(megaladon.attack(mage));
   
   
     // Stretch task: 
-    // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
+    // * Create Villain and Hero that inherit from the Humanoid.  
     // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
-    // * Create two new objects, one a villain and one a hero and fight it out with methods!
+    // * Create two new objects, one a villain!
